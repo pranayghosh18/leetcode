@@ -29,7 +29,7 @@ int maxPalindromes(string s, int k) {
         if(i > 0 && dp[i] < dp[i-1]) dp[i] = dp[i-1];
     }
 
-    for(int i : dp) cout << i <<"\t";
+    //for(int i : dp) cout << i <<"\t";
     return dp.back();
 }
 };
