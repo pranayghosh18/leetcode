@@ -2,7 +2,8 @@ class Solution {
 public:
     int maxFrequency(vector<int>& arr, int k) {
         sort(arr.begin(), arr.end());
-    int maxFreq(0), maxElem;
+    int maxFreq(0);
+    // int maxElem;
     long front(0), rear(0), curSum(0);
     // sliding window
     while(rear < arr.size()){
@@ -15,7 +16,7 @@ public:
         if(curSum <= k){
             if(freq > maxFreq){
                 maxFreq = freq;
-                maxElem = arr[rear];
+               // maxElem = arr[rear];
             }
             rear++;
             if(rear < arr.size()){
