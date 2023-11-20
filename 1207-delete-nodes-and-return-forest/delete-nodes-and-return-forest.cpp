@@ -19,8 +19,8 @@ void dfs_1110(TreeNode*& root, vector<TreeNode*>& res, unordered_set<int> delNod
     dfs_1110(root->right, res, delNodes);
 
     if(delNodes.find(root->val) != delNodes.end()){
-        if(root->left && delNodes.find((root->left)->val) == delNodes.end()) res.push_back(root->left);
-        if(root->right && delNodes.find((root->right)->val) == delNodes.end()) res.push_back(root->right);
+        if(root->left && delNodes.find(root->left->val) == delNodes.end()) res.push_back(root->left);
+        if(root->right && delNodes.find(root->right->val) == delNodes.end()) res.push_back(root->right);
 
         root = nullptr;
     }
