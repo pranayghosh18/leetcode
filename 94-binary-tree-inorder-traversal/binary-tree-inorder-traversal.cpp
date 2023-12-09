@@ -17,7 +17,7 @@ TreeNode* getPredecessor(TreeNode* root){
     TreeNode* rootCopy = root;
     rootCopy = rootCopy->left;
     while(rootCopy->right && rootCopy->right != root) rootCopy = rootCopy->right;
-    cout << rootCopy->val << endl;
+    //cout << rootCopy->val << endl;
     return rootCopy;
 }
 void morrisInorder(TreeNode* root){
@@ -28,7 +28,7 @@ void morrisInorder(TreeNode* root){
         }
         else{
             TreeNode* Predecessor = getPredecessor(root);
-            cout << "root " << root->val << "  pred " << Predecessor->val << endl;
+            //cout << "root " << root->val << "  pred " << Predecessor->val << endl;
             if(Predecessor->right == root){
                 Predecessor->right = nullptr;
                 result_94.push_back(root->val);
