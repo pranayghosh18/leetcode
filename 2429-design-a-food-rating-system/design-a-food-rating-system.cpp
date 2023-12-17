@@ -4,6 +4,8 @@ public:
     unordered_map<string, string> foodToCuisine;
     unordered_map<string, int> foodToRating;
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         //cuisinToRatingTable.clear();
         for(int i=0; i<cuisines.size(); i++){
             cuisineToRatingTable[cuisines[i]][ratings[i]].insert(foods[i]);
