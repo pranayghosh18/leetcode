@@ -10,20 +10,22 @@ int minOperations(string s) {
             // if(c != '1') oz++;
             
             if(c == '1') zo++;
-            else{
-                oz++;
-            }
+            // else{
+            //     oz++;
+            // }
         }
         else{
             // if(c != '1') zo++;
             // if(c != '0') oz++;
             if(c == '0') zo++;
-            else{
-                oz++;
-            }
+            // else{
+            //     oz++;
+            // }
         }
         even = !even;
     }        
-    return min(oz,zo);
+    // cout << "Sum : " << oz+zo <<endl;
+    oz = s.size()-zo;
+    return min(oz ,zo);
 }
 };
