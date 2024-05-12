@@ -14,8 +14,8 @@ int validator(vector<vector<int>>& poi, string s, int len){
 }
 int maxPointsInsideSquare(vector<vector<int>>& points, string s) {
     
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
     
     int l(0), h(1e9), res(0);
     while(l<=h){
