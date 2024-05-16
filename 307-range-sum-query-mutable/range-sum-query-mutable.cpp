@@ -1,20 +1,14 @@
 class NumArray {
-public:
-    vector<int> sum;
-    vector<int> arr;
-    NumArray(vector<int>& nums) {
-        // this->nums = nums;
-        arr.resize(nums.size(), 0);
-        sum.resize(nums.size()+1, 0);
-        for(int i=0; i<arr.size(); i++) update(i, nums[i]);
-
-        print(arr);
-        print(sum);
-    }
-
-    void print(vector<int> v){
-        for(int i : v) cout << i << "\t";
-        cout<< endl;
+private:
+    void build() {
+        for(int i=0; i<arr.size(); i++){
+            int fwtIdx = i+1;
+            while (fwtIdx <= arr.size())
+            {
+                sum[fwtIdx] += arr[i];
+                fwtIdx += (fwtIdx & -fwtIdx); // shifting sumIndex last set bit  
+            }
+        }
     }
 
     int query(int i) {
@@ -24,6 +18,15 @@ public:
             i -= (i & -i);  // resetting last set bit
         }
         return ans;
+    }
+
+public:
+    vector<int> sum;
+    vector<int> arr;
+    NumArray(vector<int>& arr) {
+        this->arr = arr;
+        sum.resize(arr.size()+1, 0);
+        build();
     }
 
     void update(int index, int val) {
@@ -40,10 +43,7 @@ public:
         }
     }
 
-    void build() {
-        
-    }
-
+    
     int sumRange(int left, int right) {
         return query(right+1) - query(left);
     }
