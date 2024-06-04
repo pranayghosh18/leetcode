@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int mod = 1e9+7;
+int mod = 1e9+7;
 int getArea(int delX, map<int,int>line){
     int preV(0), preK(-1);
     long long delY(0);
@@ -10,7 +10,6 @@ int getArea(int delX, map<int,int>line){
         preV += it.second;
     }
     long long area = ((long long)delX * (delY % mod)) %mod;
-
     return area;
 }
 
@@ -27,19 +26,16 @@ int rectangleArea(vector<vector<int>>& rectangles) {
             area += getArea(rec[i][0] - prevX, line); 
             area %= mod;
         }
-
         int j=i;
         while(j<rec.size() && rec[i][0] == rec[j][0]){
             // starting
             if(rec[j][1] == 1) line[rec[j][2]]++, line[rec[j][3]]--;
             if(rec[j][1] == 0) line[rec[j][2]]--, line[rec[j][3]]++; 
-
             j++;
         }
         prevX = rec[i][0];
         i=j; 
     }
-
     return area;
 }
 };
