@@ -1,6 +1,5 @@
 class Solution {
 public:
-
 long long numberOfWays(string s) {
     long long ans(0);
     long long zerosLeft(0), totalZeros(0);
@@ -15,7 +14,6 @@ long long numberOfWays(string s) {
         }
         else{
             // get 1's left
-            // ...0. 0
             long long onesLeft = (long long)i - zerosLeft;
             // get 1's right
             // chars on right = (long long)s.size() - i -1
