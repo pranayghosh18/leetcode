@@ -38,17 +38,6 @@ public:
     }
 };
 
-/*
-LC 995
-
-0 1 2 3 4 5 6 7  N = 8
-0,0,0,1,0,1,1,0 ; k=3
-1 1 1, 1 0 1 1 0 [1]
-1 1 1 1, 0 1 1 0 
-1 1 1 1 1, 0 0 0 [1]
-1 1 1 1 1 1 1 1  [1]
-*/
-
 int minKBitFlips(vector<int>& nums, int k) {
     int flips(0);
     SegTreePointQueryRangeUpdate segT(nums.size());
