@@ -1,13 +1,13 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-        int i(0),e(0);
-        for(int t : nums)
-            {
-                int pi = i; 
-                i = max(e+t,i);
-                e = max(pi,e);
-            }
-        return max(i,e);
+
+int rob(vector<int>& nums) {
+    int include(nums[0]), exclude(0);
+    for(int i=1; i<nums.size(); i++){
+        int next_exclude = max(include, exclude);
+        include = exclude + nums[i];
+        exclude = next_exclude;
     }
+    return max(include, exclude);
+}
 };
