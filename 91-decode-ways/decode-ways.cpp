@@ -1,20 +1,18 @@
 class Solution {
 public:
+int decodeWaysDfs(string s, int i, vector<int>& memo){
+    // bases
+    if(i == s.size()) return 1;
+    if(s[i] == '0') return 0;
+    if(memo[i] != -1) return memo[i];
+    int singleEffect(0), doubleEffect(0);
+    singleEffect = decodeWaysDfs(s, i+1, memo);
+    if(i+1 < s.size() && stoi(s.substr(i, 2)) <= 26) doubleEffect = decodeWaysDfs(s, i+2, memo);
+
+    return memo[i] = singleEffect+doubleEffect;
+}
 int numDecodings(string s) {
-    if(s[0] == '0') return 0;
-    vector<int> dp(s.size(), 0);
-    dp[0] = 1;
-    for(int i=1; i<s.size(); i++){
-        string lastTwos = s.substr(i-1, 2);
-        // if(lastTwos >= "26") return 0;
-        // validity
-        if(s[i-1] > '0' && lastTwos <= "26") {
-            // dp[i] += 1;
-            if(i-2 >= 0) dp[i] += dp[i-2];
-            else dp[i] += 1;
-        }
-        if(s[i] != '0') dp[i] += dp[i-1];
-    }
-    return dp.back();
+    vector<int> memo(s.size(), -1);
+    return decodeWaysDfs(s, 0, memo);
 }
 };
