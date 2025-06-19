@@ -5,7 +5,7 @@ public:
         stack<char> st;
         int i(0);
         while(i<s.size()){
-            if(st.empty() || s[i] >= st.top()){
+            if(st.empty()){
                 st.push(s[i]);
                 i++;
             }
