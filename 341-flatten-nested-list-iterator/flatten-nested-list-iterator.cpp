@@ -21,10 +21,7 @@ public:
     stack<const NestedInteger*> stk;
     int nextElem;
     NestedIterator(vector<NestedInteger> &nestedList) {
-        for (auto it = nestedList.rbegin(); it != nestedList.rend(); ++it) {
-            stk.push(&(*it));  // Safe: points to original vector element
-        }
-        cout << "stack size init " << stk.size() << endl;
+        for (auto it = nestedList.rbegin(); it != nestedList.rend(); ++it) stk.push(&(*it));
         nextElem = -1;
     }
     
@@ -35,24 +32,15 @@ public:
     bool hasNext() {
         while (!stk.empty()) {
         const NestedInteger* curr = stk.top();
-        // cout << "is int " << curr->isInteger() << endl;
         if (curr->isInteger() == true) {
-            // cout << "38 \n";
             nextElem = curr->getInteger();
             stk.pop();
             return true;
         }
 
         stk.pop();
-
         const vector<NestedInteger>& lst = curr->getList();
-
-// cout << "list size " << lst.size() << endl;
-        
-        for (auto it = lst.rbegin(); it != lst.rend(); ++it) {
-            stk.push(&(*it)); 
-        }
-        // cout << "pin \n";
+        for (auto it = lst.rbegin(); it != lst.rend(); ++it) stk.push(&(*it)); 
         }
 
         return false;
