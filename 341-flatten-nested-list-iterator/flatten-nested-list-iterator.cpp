@@ -17,35 +17,27 @@
  */
 
 class NestedIterator {
+    stack<NestedInteger> s;
 public:
-    stack<const NestedInteger*> stk;
-    // int nextElem;
     NestedIterator(vector<NestedInteger> &nestedList) {
-        for (auto it = nestedList.rbegin(); it != nestedList.rend(); ++it) stk.push(&(*it));
-        // nextElem = -1;
+        for(int i=nestedList.size() - 1; i>=0; i--) s.push(nestedList[i]);
     }
     
     int next() {
-        const NestedInteger* curr = stk.top();
-        stk.pop();
-        return curr->getInteger();
-        // return nextElem;
+        auto t = s.top();
+        s.pop();
+        return t.getInteger();
     }
     
     bool hasNext() {
-        while (!stk.empty()) {
-        const NestedInteger* curr = stk.top();
-        if (curr->isInteger() == true) {
-            // nextElem = curr->getInteger();
-            // stk.pop();
-            return true;
-        }
+        while(!s.empty()){
+            auto t = s.top();
+            if(t.isInteger()) return true;
 
-        stk.pop();
-        const vector<NestedInteger>& lst = curr->getList();
-        for (auto it = lst.rbegin(); it != lst.rend(); ++it) stk.push(&(*it)); 
+            s.pop();
+            const vector<NestedInteger> lis = t.getList();
+            for(int i=lis.size() - 1; i>=0; i--) s.push(lis[i]);
         }
-
         return false;
     }
 };
