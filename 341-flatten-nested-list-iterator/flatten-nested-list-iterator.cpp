@@ -19,22 +19,25 @@
 class NestedIterator {
 public:
     stack<const NestedInteger*> stk;
-    int nextElem;
+    // int nextElem;
     NestedIterator(vector<NestedInteger> &nestedList) {
         for (auto it = nestedList.rbegin(); it != nestedList.rend(); ++it) stk.push(&(*it));
-        nextElem = -1;
+        // nextElem = -1;
     }
     
     int next() {
-        return nextElem;
+        const NestedInteger* curr = stk.top();
+        stk.pop();
+        return curr->getInteger();
+        // return nextElem;
     }
     
     bool hasNext() {
         while (!stk.empty()) {
         const NestedInteger* curr = stk.top();
         if (curr->isInteger() == true) {
-            nextElem = curr->getInteger();
-            stk.pop();
+            // nextElem = curr->getInteger();
+            // stk.pop();
             return true;
         }
 
