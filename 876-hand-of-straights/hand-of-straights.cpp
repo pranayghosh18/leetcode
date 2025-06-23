@@ -10,7 +10,7 @@ bool isNStraightHand(vector<int>& hand, int groupSize) {
     for(auto it: hm){
         int elem = it.first;
         int count = it.second;
-        cout << "elem " << elem << "  count " << count << endl;
+        // cout << "elem " << elem << "  count " << count << endl;
         if(count == 0) continue;
 
         for(int i=1; i<groupSize; i++) {
