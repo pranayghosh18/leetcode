@@ -1,11 +1,9 @@
 class Solution {
 public:
 bool canPartition(vector<int>& nums) {
-    int sum(0);
-    for(int i:nums) sum += i;
+    int sum = accumulate(nums.begin(), nums.end(), 0);
     if(sum & 1) return false;
     int target = sum/2;
-
     vector<bool> currentPossibilities(target+1, false);
     currentPossibilities[0] = true;
     for(int i:nums){
