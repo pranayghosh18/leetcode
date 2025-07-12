@@ -6,7 +6,7 @@ int onesInList(vector<int>& lis){
     
     int sum(0), maxSum(0);
     for(int i: lis){
-        sum = max(i, sum+i);
+        sum = max(0, sum+i);
         maxSum = max(maxSum, sum);
     }
     // cout << maxSum;
