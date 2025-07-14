@@ -2,15 +2,15 @@ class Solution {
 public:
 
 // contributor, child's CHAR
-pair<int, char> dfs2246(int par, string& s, vector<vector<int>>& graph, int& ans){
+int dfs2246(int par, string& s, vector<vector<int>>& graph, int& ans){
     // if leaf 
-    if(graph[par].size() == 0) return {1, s[par]};
+    if(graph[par].size() == 0) return 1;
 
     int maxLen(0), secondMaxLen(0);
     for(auto child : graph[par]){
         auto childRes = dfs2246(child, s, graph, ans);
-        int len = childRes.first;
-        char childChar = childRes.second;
+        int len = childRes;
+        char childChar = s[child];
 
         if(s[par] != childChar) {
             if(len >= maxLen){
@@ -22,7 +22,7 @@ pair<int, char> dfs2246(int par, string& s, vector<vector<int>>& graph, int& ans
     }
     // leaders philosophy
     ans = max(ans, maxLen + secondMaxLen + 1);
-    return {maxLen+1, s[par]};
+    return maxLen+1;
 }
 int longestPath(vector<int>& parent, string s) {
     // prepare graph
