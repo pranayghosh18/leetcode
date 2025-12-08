@@ -1,43 +1,33 @@
 class Solution {
 
-    class GetSquares {
-        List<Boolean> squares;
-        public GetSquares(int n) {
-            squares = new ArrayList<>(Collections.nCopies(n+1, false));
-            int endIndex = (int) Math.sqrt(n);
-            for (int i=0; i<=endIndex; i++) {
-                int squareVal = i*i;
-                squares.set(squareVal, true);
-            }
-        }
-        
-        public boolean isSquare(int x) {
-            return squares.get(x);
-        }
+    int gcd(int a, int b) {
+        if (a < b) return gcd(b,a);
+        if (b == 0) return a;
+        return gcd(b, a%b);
     }
-    
-    public int countTriples(int n) {
-        GetSquares squares = new GetSquares(n*n);
-        int ans = 0;
+    int addOn (int x, int n) {
+        int res = 0;
+        int counter = 1;
+        while (x * counter <= n) {
+            res++;
+            counter++;
+        }
+        return res;
+    }
 
-        for (int c=2; c<=n; c++) {
-            for (int b=c-1; b>=1; b--) {
-                int require = c*c - b*b;
-                if (squares.isSquare(require)) ans++;
+    public int countTriples(int n) {
+        int ans = 0;
+        // int odd = 1, even = 2;
+        for (int odd=1; odd<n; odd+=2) {
+            int maxNum = 0;
+            for (int even=2; maxNum<n; even+=2) {
+                maxNum = odd*odd + even*even;
+                if (gcd(odd, even) == 1) {
+                    // System.out.println("even " + even + " odd " + odd);
+                    ans += addOn(maxNum, n);
+                }
             }
         }
-        
-        return ans;
+        return 2 * ans;
     }
 }
-
-/**
-a < b < c
-
-for each c,
-
-traverse through b and check if a can be there
-isSquare
-
-
- */
