@@ -44,7 +44,7 @@ class Solution {
         // process the events
         for (List<String> event : events) {
 
-            System.out.println(event);
+            // System.out.println(event);
 
 
             String type = event.get(0);
